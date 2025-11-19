@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "187666971694",
+    "project_id": "imagen-ai-app",
+    "storage_bucket": "imagen-ai-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187666971694:android:b8049f81c34a9529a733bf",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgD167r_sSxks3a30J7ucLJ41byJ-yTEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
