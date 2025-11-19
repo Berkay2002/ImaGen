@@ -1,0 +1,19 @@
+# User table to link edits to specific users
+type User @table {
+  id: String! @col(name: "uid")
+  email: String
+  displayName: String
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+# Stores the history of image edits
+type ImageEdit @table {
+  id: UUID! @default(expr: "uuidV4()")
+  user: User! # Foreign key to User
+  originalImageUrl: String!
+  maskedImageUrl: String
+  resultImageUrl: String
+  prompt: String!
+  maskPathsJson: String! # Store the drawing paths as a JSON string
+  createdAt: Timestamp! @default(expr: "request.time")
+}

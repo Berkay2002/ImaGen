@@ -1,0 +1,236 @@
+extend type Mutation {
+  """
+  ✨ Insert a single `ImageEdit` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  imageEdit_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: ImageEdit_Data!
+  ): ImageEdit_KeyOutput! @fdc_generated(from: "ImageEdit", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `User` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert `ImageEdit` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  imageEdit_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [ImageEdit_Data!]!
+  ): [ImageEdit_KeyOutput!]! @fdc_generated(from: "ImageEdit", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `User` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert or update a single `ImageEdit` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `ImageEdit`.
+  """
+  imageEdit_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: ImageEdit_Data!
+  ): ImageEdit_KeyOutput! @fdc_generated(from: "ImageEdit", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `User` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update `ImageEdit` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `ImageEdit`.
+  """
+  imageEdit_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [ImageEdit_Data!]!
+  ): [ImageEdit_KeyOutput!]! @fdc_generated(from: "ImageEdit", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `User` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `ImageEdit` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `ImageEdit` or `null` if not found.
+  """
+  imageEdit_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: ImageEdit_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ImageEdit_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: ImageEdit_Data!
+  ): ImageEdit_KeyOutput @fdc_generated(from: "ImageEdit", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `User` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `User` or `null` if not found.
+  """
+  user_update(
+    """
+    The unique ID of the object.
+    """
+    id: String
+
+    """
+    ✨ `_expr` server value variant of `id` (The unique ID of the object.)
+    """
+    id_expr: String_Expr
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: User_Data!
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update `ImageEdit` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  imageEdit_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: ImageEdit_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: ImageEdit_Data!
+  ): Int! @fdc_generated(from: "ImageEdit", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `User` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  user_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: User_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: User_Data!
+  ): Int! @fdc_generated(from: "User", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Delete a single `ImageEdit` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  imageEdit_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: ImageEdit_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ImageEdit_FirstRow
+  ): ImageEdit_KeyOutput @fdc_generated(from: "ImageEdit", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `User` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  user_delete(
+    """
+    The unique ID of the object.
+    """
+    id: String
+
+    """
+    ✨ `_expr` server value variant of `id` (The unique ID of the object.)
+    """
+    id_expr: String_Expr
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete `ImageEdit` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  imageEdit_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: ImageEdit_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "ImageEdit", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `User` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  user_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: User_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "User", purpose: DELETE_MULTIPLE)
+}

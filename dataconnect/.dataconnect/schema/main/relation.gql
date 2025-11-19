@@ -1,0 +1,186 @@
+extend type ImageEdit {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "ImageEdit", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `ImageEdit` table.
+  """
+  _count: Int! @fdc_generated(from: "ImageEdit.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ImageEdit` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ImageEdit.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ImageEdit` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ImageEdit.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ImageEdit` table where the `maskPathsJson` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  maskPathsJson_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ImageEdit.maskPathsJson", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ImageEdit` table where the `maskedImageUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  maskedImageUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ImageEdit.maskedImageUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ImageEdit` table where the `originalImageUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  originalImageUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ImageEdit.originalImageUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ImageEdit` table where the `prompt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  prompt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ImageEdit.prompt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ImageEdit` table where the `resultImageUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  resultImageUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ImageEdit.resultImageUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ImageEdit` table where the `userId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  userId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ImageEdit.userId", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `ImageEdit` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "ImageEdit.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `ImageEdit` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "ImageEdit.createdAt", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "ImageEdit.id", purpose: GLOBAL_ID)
+}
+extend type User {
+  """
+  ✨ List `ImageEdit` objects in a one-to-many relationship (where `ImageEdit`.`user` is this object).
+  """
+  imageEdits_on_user(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ImageEdit_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ImageEdit_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ImageEdit_Having
+  ): [ImageEdit!]! @fdc_generated(from: "ImageEdit.user", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "User", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `User` table.
+  """
+  _count: Int! @fdc_generated(from: "User.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `displayName` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  displayName_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.displayName", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `email` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  email_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.email", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.id", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `User` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "User.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `User` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "User.createdAt", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "User.id", purpose: GLOBAL_ID)
+}

@@ -24,10 +24,17 @@ class ImageEditingPage extends ConsumerWidget {
           IconButton(
             onPressed: () => ref.read(maskProvider.notifier).undo(),
             icon: const Icon(Icons.undo),
+            tooltip: 'Undo',
+          ),
+          IconButton(
+            onPressed: () => ref.read(maskProvider.notifier).redo(),
+            icon: const Icon(Icons.redo),
+            tooltip: 'Redo',
           ),
           IconButton(
             onPressed: () => ref.read(maskProvider.notifier).clear(),
             icon: const Icon(Icons.clear),
+            tooltip: 'Clear Mask',
           ),
         ],
       ),
@@ -43,15 +50,37 @@ class ImageEditingPage extends ConsumerWidget {
                 if (imageEditingState.status != ImageEditingStatus.success)
                   const MaskingCanvas(),
                 if (imageEditingState.status == ImageEditingStatus.loading)
-                  const Center(
-                    child: CircularProgressIndicator(),
+                  Container(
+                    color: Colors.black54,
+                    child: const Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CircularProgressIndicator(),
+                          SizedBox(height: 16),
+                          Text('AI is thinking...', style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                    ),
                   ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, -5),
+                ),
+              ],
+            ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text('Brush Size'),
                 Slider(
@@ -60,18 +89,44 @@ class ImageEditingPage extends ConsumerWidget {
                   max: 50,
                   onChanged: (value) => ref.read(maskProvider.notifier).setBrushSize(value),
                 ),
-                TextField(
-                  controller: textEditingController,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter a prompt (e.g., "Replace with a dog")',
-                  ),
-                  onSubmitted: (value) {
-                    imageEditingNotifier.editText(
-                      imageFile,
-                      value,
-                      maskState.paths,
-                    );
-                  },
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: textEditingController,
+                        decoration: InputDecoration(
+                          hintText: 'Enter a prompt (e.g., "Replace with a dog")',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        ),
+                        onSubmitted: (value) {
+                          if (value.isNotEmpty) {
+                            imageEditingNotifier.editText(
+                              imageFile,
+                              value,
+                              maskState.paths,
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    IconButton.filled(
+                      onPressed: () {
+                        if (textEditingController.text.isNotEmpty) {
+                          imageEditingNotifier.editText(
+                            imageFile,
+                            textEditingController.text,
+                            maskState.paths,
+                          );
+                        }
+                      },
+                      icon: const Icon(Icons.auto_awesome),
+                    ),
+                  ],
                 ),
               ],
             ),

@@ -1,5 +1,33 @@
 # ImaGen CHANGELOG
 
+## Version 0.0.2
+
+### Authentication, Data Connect & Enhanced Editing
+
+This release introduces secure authentication, robust data management, and significant improvements to the editing workflow.
+
+**New Features:**
+
+*   **Firebase Authentication:**
+    *   Implemented Anonymous Sign-In ("Enter as Guest") for quick and secure access.
+    *   Added a dedicated `LoginPage`.
+    *   Secured app routes using `GoRouter` redirects (guards).
+    *   Added Logout functionality to the Home Page.
+*   **Advanced Editing Controls:**
+    *   **Undo/Redo System:** Implemented a full Command Pattern for the Magic Mask, allowing users to undo and redo drawing actions.
+    *   **UI Enhancements:** Added a "Thinking" overlay with spinner during AI processing and improved the styling of the bottom control panel.
+*   **AI Service Layer:**
+    *   Structured the `GeminiAiImageEditingService` for future integration with the real Google Gemini API.
+    *   Refactored the service interface to support cleaner dependency injection.
+*   **Backend & Data:**
+    *   **Firebase Data Connect:** Configured and deployed the Data Connect service with a PostgreSQL backend.
+    *   **Schema Design:** Defined a strongly-typed GraphQL schema (`User`, `ImageEdit`) to store user history and edits.
+
+**Improvements:**
+
+*   **Home Page Redesign:** Updated the Home Page with a modern, card-based layout and better iconography.
+*   **Project Structure:** Organized Data Connect configuration and connectors.
+
 ## Version 0.0.1
 
 ### Initial Release & Core Features

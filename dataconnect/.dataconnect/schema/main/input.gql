@@ -1,0 +1,554 @@
+"""
+✨ `ImageEdit_KeyOutput` returns the primary key fields of table type `ImageEdit`.
+
+It has the same format as `ImageEdit_Key`, but is only used as mutation return value.
+"""
+scalar ImageEdit_KeyOutput
+"""
+✨ `User_KeyOutput` returns the primary key fields of table type `User`.
+
+It has the same format as `User_Key`, but is only used as mutation return value.
+"""
+scalar User_KeyOutput
+"""
+✨ Generated data input type for table 'ImageEdit'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input ImageEdit_Data {
+  """
+  ✨ Generated from Field `ImageEdit`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `ImageEdit`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `ImageEdit`.`userId` of type `String!`
+  """
+  userId: String
+  """
+  ✨ `_expr` server value variant of `userId` (✨ Generated from Field `ImageEdit`.`userId` of type `String!`)
+  """
+  userId_expr: String_Expr
+  """
+  ✨ Generated from Field `ImageEdit`.`user` of type `User!`
+  """
+  user: User_Key
+  """
+  ✨ Generated from Field `ImageEdit`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `ImageEdit`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `ImageEdit`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `ImageEdit`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `ImageEdit`.`maskPathsJson` of type `String!`
+  """
+  maskPathsJson: String
+  """
+  ✨ `_expr` server value variant of `maskPathsJson` (✨ Generated from Field `ImageEdit`.`maskPathsJson` of type `String!`)
+  """
+  maskPathsJson_expr: String_Expr
+  """
+  ✨ Generated from Field `ImageEdit`.`maskedImageUrl` of type `String`
+  """
+  maskedImageUrl: String
+  """
+  ✨ `_expr` server value variant of `maskedImageUrl` (✨ Generated from Field `ImageEdit`.`maskedImageUrl` of type `String`)
+  """
+  maskedImageUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `ImageEdit`.`originalImageUrl` of type `String!`
+  """
+  originalImageUrl: String
+  """
+  ✨ `_expr` server value variant of `originalImageUrl` (✨ Generated from Field `ImageEdit`.`originalImageUrl` of type `String!`)
+  """
+  originalImageUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `ImageEdit`.`prompt` of type `String!`
+  """
+  prompt: String
+  """
+  ✨ `_expr` server value variant of `prompt` (✨ Generated from Field `ImageEdit`.`prompt` of type `String!`)
+  """
+  prompt_expr: String_Expr
+  """
+  ✨ Generated from Field `ImageEdit`.`resultImageUrl` of type `String`
+  """
+  resultImageUrl: String
+  """
+  ✨ `_expr` server value variant of `resultImageUrl` (✨ Generated from Field `ImageEdit`.`resultImageUrl` of type `String`)
+  """
+  resultImageUrl_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'ImageEdit'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input ImageEdit_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [ImageEdit_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: ImageEdit_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [ImageEdit_Filter!]
+  """
+  ✨ Generated from Field `ImageEdit`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`userId` of type `String!`
+  """
+  userId: String_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`user` of type `User!`
+  """
+  user: User_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`maskPathsJson` of type `String!`
+  """
+  maskPathsJson: String_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`maskedImageUrl` of type `String`
+  """
+  maskedImageUrl: String_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`originalImageUrl` of type `String!`
+  """
+  originalImageUrl: String_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`prompt` of type `String!`
+  """
+  prompt: String_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`resultImageUrl` of type `String`
+  """
+  resultImageUrl: String_Filter
+}
+"""
+✨ Generated first-row input type for table 'ImageEdit'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input ImageEdit_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [ImageEdit_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: ImageEdit_Filter
+}
+"""
+✨ Generated having input type for table 'ImageEdit'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input ImageEdit_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [ImageEdit_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: ImageEdit_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [ImageEdit_Having!]
+  """
+  ✨ Generated from Field `ImageEdit`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`maskPathsJson_count` of type `Int!`
+  """
+  maskPathsJson_count: Int_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`maskedImageUrl_count` of type `Int!`
+  """
+  maskedImageUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`originalImageUrl_count` of type `Int!`
+  """
+  originalImageUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`prompt_count` of type `Int!`
+  """
+  prompt_count: Int_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`resultImageUrl_count` of type `Int!`
+  """
+  resultImageUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`userId_count` of type `Int!`
+  """
+  userId_count: Int_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `ImageEdit`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'ImageEdit'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input ImageEdit_Key {
+  """
+  ✨ Generated from Field `ImageEdit`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `ImageEdit`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'ImageEdit'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input ImageEdit_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: ImageEdit_Filter
+}
+"""
+✨ Generated order input type for table 'ImageEdit'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input ImageEdit_Order {
+  """
+  ✨ Generated from Field `ImageEdit`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`userId` of type `String!`
+  """
+  userId: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`user` of type `User!`
+  """
+  user: User_Order
+  """
+  ✨ Generated from Field `ImageEdit`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`maskPathsJson` of type `String!`
+  """
+  maskPathsJson: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`maskedImageUrl` of type `String`
+  """
+  maskedImageUrl: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`originalImageUrl` of type `String!`
+  """
+  originalImageUrl: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`prompt` of type `String!`
+  """
+  prompt: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`resultImageUrl` of type `String`
+  """
+  resultImageUrl: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`maskPathsJson_count` of type `Int!`
+  """
+  maskPathsJson_count: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`maskedImageUrl_count` of type `Int!`
+  """
+  maskedImageUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`originalImageUrl_count` of type `Int!`
+  """
+  originalImageUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`prompt_count` of type `Int!`
+  """
+  prompt_count: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`resultImageUrl_count` of type `Int!`
+  """
+  resultImageUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`userId_count` of type `Int!`
+  """
+  userId_count: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `ImageEdit`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'User'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input User_Data {
+  """
+  ✨ Generated from Field `User`.`id` of type `String!`
+  """
+  id: String
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `User`.`id` of type `String!`)
+  """
+  id_expr: String_Expr
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `User`.`displayName` of type `String`
+  """
+  displayName: String
+  """
+  ✨ `_expr` server value variant of `displayName` (✨ Generated from Field `User`.`displayName` of type `String`)
+  """
+  displayName_expr: String_Expr
+  """
+  ✨ Generated from Field `User`.`email` of type `String`
+  """
+  email: String
+  """
+  ✨ `_expr` server value variant of `email` (✨ Generated from Field `User`.`email` of type `String`)
+  """
+  email_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'User'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input User_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [User_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: User_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [User_Filter!]
+  """
+  ✨ Generated from Field `User`.`id` of type `String!`
+  """
+  id: String_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`displayName` of type `String`
+  """
+  displayName: String_Filter
+  """
+  ✨ Generated from Field `User`.`email` of type `String`
+  """
+  email: String_Filter
+  """
+  ✨ Generated from Field `User`.`imageEdits_on_user` of type `[ImageEdit!]!`
+  """
+  imageEdits_on_user: ImageEdit_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'User'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input User_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [User_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: User_Filter
+}
+"""
+✨ Generated having input type for table 'User'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input User_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [User_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: User_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [User_Having!]
+  """
+  ✨ Generated from Field `User`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`displayName_count` of type `Int!`
+  """
+  displayName_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`email_count` of type `Int!`
+  """
+  email_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'User'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input User_Key {
+  """
+  ✨ Generated from Field `User`.`id` of type `String!`
+  """
+  id: String
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `User`.`id` of type `String!`)
+  """
+  id_expr: String_Expr
+}
+"""
+✨ Generated list filter input type for table 'User'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input User_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: User_Filter
+}
+"""
+✨ Generated order input type for table 'User'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input User_Order {
+  """
+  ✨ Generated from Field `User`.`id` of type `String!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `User`.`displayName` of type `String`
+  """
+  displayName: OrderDirection
+  """
+  ✨ Generated from Field `User`.`email` of type `String`
+  """
+  email: OrderDirection
+  """
+  ✨ Generated from Field `User`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`displayName_count` of type `Int!`
+  """
+  displayName_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`email_count` of type `Int!`
+  """
+  email_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+}
