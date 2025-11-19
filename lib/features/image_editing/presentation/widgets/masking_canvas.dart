@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/features/image_editing/presentation/providers/mask_provider.dart';
@@ -12,16 +11,21 @@ class MaskingCanvas extends ConsumerWidget {
     final notifier = ref.read(maskProvider.notifier);
 
     return GestureDetector(
+      onPanStart: (details) {
+        notifier.startPath(details.localPosition);
+      },
       onPanUpdate: (details) {
-        final path = Path()
-          ..addOval(Rect.fromCircle(
-            center: details.localPosition,
-            radius: maskState.brushSize / 2,
-          ));
-        notifier.addPath(path);
+        notifier.updatePath(details.localPosition);
+      },
+      onPanEnd: (details) {
+        notifier.endPath();
       },
       child: CustomPaint(
-        painter: MaskPainter(paths: maskState.paths),
+        painter: MaskPainter(
+          paths: maskState.paths,
+          currentPath: maskState.currentPath,
+          brushSize: maskState.brushSize,
+        ),
         child: Container(),
       ),
     );
@@ -29,18 +33,33 @@ class MaskingCanvas extends ConsumerWidget {
 }
 
 class MaskPainter extends CustomPainter {
-  MaskPainter({required this.paths});
+  MaskPainter({
+    required this.paths,
+    required this.currentPath,
+    required this.brushSize,
+  });
 
   final List<Path> paths;
+  final Path? currentPath;
+  final double brushSize;
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = Colors.red.withOpacity(0.5)
-      ..style = PaintingStyle.fill;
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = brushSize
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
 
+    // Draw all completed paths
     for (final path in paths) {
       canvas.drawPath(path, paint);
+    }
+
+    // Draw the current path being drawn
+    if (currentPath != null) {
+      canvas.drawPath(currentPath!, paint);
     }
   }
 

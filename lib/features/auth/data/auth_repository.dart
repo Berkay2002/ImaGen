@@ -19,7 +19,15 @@ class AuthRepository {
   User? get currentUser => _firebaseAuth.currentUser;
 
   Future<void> signInAnonymously() async {
-    await _firebaseAuth.signInAnonymously();
+    try {
+      await _firebaseAuth.signInAnonymously();
+    } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException: ${e.code} - ${e.message}');
+      rethrow;
+    } catch (e) {
+      print('Error signing in anonymously: $e');
+      rethrow;
+    }
   }
 
   Future<void> signOut() async {

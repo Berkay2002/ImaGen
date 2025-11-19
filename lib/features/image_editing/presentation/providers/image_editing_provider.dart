@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart' hide Path;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/features/image_editing/data/datasources/ai_image_editing_service.dart';
+import 'package:my_app/features/image_editing/data/datasources/gemini_ai_image_editing_service.dart';
 
 enum ImageEditingStatus {
   initial,
@@ -38,7 +40,7 @@ class ImageEditingState {
 }
 
 final imageEditingServiceProvider = Provider<AiImageEditingService>((ref) {
-  return MockAiImageEditingService();
+  return GeminiAiImageEditingService();
 });
 
 final imageEditingProvider =
@@ -51,13 +53,29 @@ class ImageEditingNotifier extends StateNotifier<ImageEditingState> {
 
   final AiImageEditingService _service;
 
-  Future<void> editText(File image, String prompt, List<Path> mask) async {
+  Future<void> editText(
+    File image,
+    String prompt,
+    List<ui.Path> mask,
+    double brushSize,
+    Size screenSize, {
+    Uint8List? currentEditedImage,
+  }) async {
     state = state.copyWith(status: ImageEditingStatus.loading);
     try {
-      final result = await _service.editText(image, prompt, mask);
-      state = state.copyWith(status: ImageEditingStatus.success, result: result);
+      final result = await _service.editText(
+        image,
+        prompt,
+        mask,
+        brushSize,
+        screenSize,
+        currentEditedImage: currentEditedImage,
+      );
+      state =
+          state.copyWith(status: ImageEditingStatus.success, result: result);
     } catch (e) {
-      state = state.copyWith(status: ImageEditingStatus.failure, error: e.toString());
+      state = state.copyWith(
+          status: ImageEditingStatus.failure, error: e.toString());
     }
   }
 }

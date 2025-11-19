@@ -2,15 +2,30 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui'; // For Path
 
+import 'package:flutter/material.dart' show Size;
 import 'package:flutter/services.dart'; // For rootBundle
 
 abstract class AiImageEditingService {
-  Future<Uint8List> editText(File image, String prompt, List<Path> mask);
+  Future<Uint8List> editText(
+    File image,
+    String prompt,
+    List<Path> mask,
+    double brushSize,
+    Size screenSize, {
+    Uint8List? currentEditedImage,
+  });
 }
 
 class MockAiImageEditingService implements AiImageEditingService {
   @override
-  Future<Uint8List> editText(File image, String prompt, List<Path> mask) async {
+  Future<Uint8List> editText(
+    File image,
+    String prompt,
+    List<Path> mask,
+    double brushSize,
+    Size screenSize, {
+    Uint8List? currentEditedImage,
+  }) async {
     // Simulate a network delay
     await Future.delayed(const Duration(seconds: 2));
 
@@ -21,7 +36,7 @@ class MockAiImageEditingService implements AiImageEditingService {
       return data.buffer.asUint8List();
     } catch (e) {
       // Fallback if asset is missing
-      return Uint8List(0); 
+      return Uint8List(0);
     }
   }
 }

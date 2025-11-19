@@ -7,21 +7,26 @@ class MaskState {
     required this.paths,
     required this.redoPaths,
     required this.brushSize,
+    required this.currentPath,
   });
 
   final List<Path> paths;
   final List<Path> redoPaths;
   final double brushSize;
+  final Path? currentPath;
 
   MaskState copyWith({
     List<Path>? paths,
     List<Path>? redoPaths,
     double? brushSize,
+    Path? currentPath,
+    bool clearCurrentPath = false,
   }) {
     return MaskState(
       paths: paths ?? this.paths,
       redoPaths: redoPaths ?? this.redoPaths,
       brushSize: brushSize ?? this.brushSize,
+      currentPath: clearCurrentPath ? null : (currentPath ?? this.currentPath),
     );
   }
 }
@@ -32,11 +37,35 @@ final maskProvider = StateNotifierProvider<MaskNotifier, MaskState>((ref) {
 
 class MaskNotifier extends StateNotifier<MaskState> {
   MaskNotifier()
-      : super(const MaskState(
-          paths: [],
-          redoPaths: [],
+      : super(MaskState(
+          paths: const [],
+          redoPaths: const [],
           brushSize: 20.0,
+          currentPath: null,
         ));
+
+  void startPath(Offset position) {
+    final path = Path()..moveTo(position.dx, position.dy);
+    state = state.copyWith(currentPath: path);
+  }
+
+  void updatePath(Offset position) {
+    if (state.currentPath != null) {
+      final path = Path.from(state.currentPath!)
+        ..lineTo(position.dx, position.dy);
+      state = state.copyWith(currentPath: path);
+    }
+  }
+
+  void endPath() {
+    if (state.currentPath != null) {
+      state = state.copyWith(
+        paths: [...state.paths, state.currentPath!],
+        redoPaths: [], // Clear redo stack on new action
+        clearCurrentPath: true,
+      );
+    }
+  }
 
   void addPath(Path path) {
     state = state.copyWith(
@@ -66,10 +95,6 @@ class MaskNotifier extends StateNotifier<MaskState> {
   }
 
   void clear() {
-    // To support undoing a clear, we might need a more complex command pattern,
-    // but for now, let's just clear. 
-    // If we wanted to undo clear, we'd need to treat "Clear" as a command.
-    // For simplicity in this specific request, I'll just clear.
     state = state.copyWith(paths: [], redoPaths: []);
   }
 
