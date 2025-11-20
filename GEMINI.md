@@ -1,3 +1,10 @@
+## Gemini Added Memories
+- User is Berkay Orhan, a university student/researcher working on a 'Deep Research' agent using Next.js and LangGraph for the course TNM114.
+- Today's date is Thursday, November 20, 2025.
+- My operating system is: linux.
+- The project's temporary directory is: /home/berkay-orhan/.gemini/tmp/a1fab28eb3b228cf166172b4ff9ef1b7e28aa5588a4e70f78324e53b03c3b94c.
+- I'm currently working in the directory: /home/berkay-orhan/Developer/university/ImaGen.
+
 # **AI Development Guidelines for Flutter in Firebase Studio**
 
 These guidelines define the operational principles and capabilities of an AI agent (e.g., Gemini) interacting with Flutter projects within the Firebase Studio environment. The goal is to enable an efficient, automated, and error-resilient application design and development workflow.

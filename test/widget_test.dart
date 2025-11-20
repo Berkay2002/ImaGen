@@ -1,30 +1,68 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:my_app/main.dart';
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
+import 'package:my_app/features/auth/data/auth_repository.dart';
+import 'package:my_app/features/gallery/data/datasources/local_image_storage.dart';
+
+class MockLocalImageStorage implements LocalImageStorage {
+  @override
+  Future<List<File>> loadImages() async => Future.value([]);
+
+  @override
+  Future<File> saveImage(Uint8List imageBytes) async {
+    throw UnimplementedError();
+  }
+}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  final user = MockUser(
+    isAnonymous: false,
+    uid: 'someuid',
+    email: 'bob@somedomain.com',
+    displayName: 'Bob',
+  );
+  final auth = MockFirebaseAuth(mockUser: user);
+
+  testWidgets('HomePage UI smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          authRepositoryProvider.overrideWithValue(AuthRepository(auth)),
+          authStateProvider.overrideWith((ref) => Stream.value(user)),
+        ],
+        child: const MyApp(),
+      ),
+    );
+    await tester.pumpAndSettle();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the main title is present.
+    expect(find.text('Start Creating'), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+  testWidgets('GalleryPage UI smoke test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          authRepositoryProvider.overrideWithValue(AuthRepository(auth)),
+          authStateProvider.overrideWith((ref) => Stream.value(user)),
+          localImageStorageProvider.overrideWithValue(MockLocalImageStorage()),
+        ],
+        child: const MyApp(),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // Tap the gallery icon
+    await tester.tap(find.byTooltip('My Creations'));
     await tester.pump();
+    await tester.pumpAndSettle();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that the gallery page is displayed and shows the empty message.
+    expect(find.text('Your generated images will appear here.'), findsOneWidget);
   });
 }

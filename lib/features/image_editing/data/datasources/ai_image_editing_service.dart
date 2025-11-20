@@ -1,8 +1,6 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'dart:ui'; // For Path
 
-import 'package:flutter/material.dart' show Size;
 import 'package:flutter/services.dart'; // For rootBundle
 
 abstract class AiImageEditingService {

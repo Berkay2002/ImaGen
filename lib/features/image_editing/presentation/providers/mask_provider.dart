@@ -37,9 +37,9 @@ final maskProvider = StateNotifierProvider<MaskNotifier, MaskState>((ref) {
 
 class MaskNotifier extends StateNotifier<MaskState> {
   MaskNotifier()
-      : super(MaskState(
-          paths: const [],
-          redoPaths: const [],
+      : super(const MaskState(
+          paths: [],
+          redoPaths: [],
           brushSize: 20.0,
           currentPath: null,
         ));

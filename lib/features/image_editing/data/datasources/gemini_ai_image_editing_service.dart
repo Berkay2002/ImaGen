@@ -67,7 +67,7 @@ class GeminiAiImageEditingService implements AiImageEditingService {
       // Step 7: Parse response robustly
       return _extractImageFromResponse(response, image);
     } catch (e) {
-      print('GeminiAiImageEditingService Error: $e');
+
       rethrow;
     }
   }
@@ -235,14 +235,12 @@ STRICT RULES:
       // Fallback 1: Check if there's text indicating an error
       final text = response.text;
       if (text != null && text.isNotEmpty) {
-        print('Gemini returned text instead of image: $text');
+        // Optionally log this text to a real logging service
       }
 
       // Fallback 2: Return original image if no image was generated
-      print('No image found in response, returning original image');
       return await originalImage.readAsBytes();
     } catch (e) {
-      print('Error extracting image from response: $e');
       // Final fallback: return original image
       return await originalImage.readAsBytes();
     }

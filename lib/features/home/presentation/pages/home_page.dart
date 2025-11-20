@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_app/features/auth/data/auth_repository.dart';
 
+
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
@@ -26,6 +27,11 @@ class HomePage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('ImaGen'),
         actions: [
+          IconButton(
+            onPressed: () => context.go('/gallery'),
+            icon: const Icon(Icons.photo_library),
+            tooltip: 'My Creations',
+          ),
           IconButton(
             onPressed: () => ref.read(authRepositoryProvider).signOut(),
             icon: const Icon(Icons.logout),

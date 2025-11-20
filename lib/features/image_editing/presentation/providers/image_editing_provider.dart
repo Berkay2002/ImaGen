@@ -7,34 +7,34 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/features/image_editing/data/datasources/ai_image_editing_service.dart';
 import 'package:my_app/features/image_editing/data/datasources/gemini_ai_image_editing_service.dart';
 
-enum ImageEditingStatus {
+enum ImageGenerationStatus {
   initial,
   loading,
   success,
-  failure,
+  error,
 }
 
 @immutable
 class ImageEditingState {
   const ImageEditingState({
-    this.status = ImageEditingStatus.initial,
+    this.status = ImageGenerationStatus.initial,
     this.result,
-    this.error,
+    this.errorMessage,
   });
 
-  final ImageEditingStatus status;
+  final ImageGenerationStatus status;
   final Uint8List? result;
-  final String? error;
+  final String? errorMessage;
 
   ImageEditingState copyWith({
-    ImageEditingStatus? status,
+    ImageGenerationStatus? status,
     Uint8List? result,
-    String? error,
+    String? errorMessage,
   }) {
     return ImageEditingState(
       status: status ?? this.status,
       result: result ?? this.result,
-      error: error ?? this.error,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 }
@@ -61,7 +61,7 @@ class ImageEditingNotifier extends StateNotifier<ImageEditingState> {
     Size screenSize, {
     Uint8List? currentEditedImage,
   }) async {
-    state = state.copyWith(status: ImageEditingStatus.loading);
+    state = state.copyWith(status: ImageGenerationStatus.loading, errorMessage: null);
     try {
       final result = await _service.editText(
         image,
@@ -72,10 +72,10 @@ class ImageEditingNotifier extends StateNotifier<ImageEditingState> {
         currentEditedImage: currentEditedImage,
       );
       state =
-          state.copyWith(status: ImageEditingStatus.success, result: result);
+          state.copyWith(status: ImageGenerationStatus.success, result: result);
     } catch (e) {
       state = state.copyWith(
-          status: ImageEditingStatus.failure, error: e.toString());
+          status: ImageGenerationStatus.error, errorMessage: e.toString());
     }
   }
 }

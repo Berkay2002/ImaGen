@@ -46,7 +46,7 @@ class MaskPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.red.withOpacity(0.5)
+      ..color = Colors.red.withAlpha(128)
       ..style = PaintingStyle.stroke
       ..strokeWidth = brushSize
       ..strokeCap = StrokeCap.round

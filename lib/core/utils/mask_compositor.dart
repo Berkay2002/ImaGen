@@ -65,7 +65,7 @@ Future<Uint8List> compositeMaskOntoImage(
 
   // Draw the red mask with higher opacity for better AI recognition
   final maskPaint = Paint()
-    ..color = Colors.red.withOpacity(0.8)
+    ..color = Colors.red.withAlpha(204)
     ..style = PaintingStyle.stroke
     ..strokeWidth = brushSize * scaleX // Scale brush size to image coordinates
     ..strokeCap = StrokeCap.round
@@ -74,8 +74,10 @@ Future<Uint8List> compositeMaskOntoImage(
   // Transform and draw each path
   for (final path in paths) {
     final matrix = Matrix4.identity()
-      ..translate(-offsetX, -offsetY)
-      ..scale(scaleX, scaleY);
+      // ignore: deprecated_member_use
+      ..scale(scaleX, scaleY)
+      // ignore: deprecated_member_use
+      ..translate(-offsetX, -offsetY);
 
     final transformedPath = path.transform(matrix.storage);
     canvas.drawPath(transformedPath, maskPaint);

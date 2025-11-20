@@ -8,6 +8,7 @@ import 'package:my_app/features/auth/data/auth_repository.dart';
 import 'package:my_app/features/auth/presentation/pages/login_page.dart';
 import 'package:my_app/features/home/presentation/pages/home_page.dart';
 import 'package:my_app/features/image_editing/presentation/pages/image_editing_page.dart';
+import 'package:my_app/features/gallery/presentation/pages/gallery_page.dart';
 
 import 'firebase_options.dart';
 
@@ -43,6 +44,10 @@ class MyApp extends ConsumerWidget {
                 final imageFile = state.extra as File;
                 return ImageEditingPage(imageFile: imageFile);
               },
+            ),
+            GoRoute(
+              path: 'gallery',
+              builder: (context, state) => const GalleryPage(),
             ),
           ],
         ),
